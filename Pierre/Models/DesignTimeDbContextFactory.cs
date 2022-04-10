@@ -7,7 +7,7 @@ namespace Pierre.Models
 {
   public class PierreContextFactory : IDesignTimeDbContextFactory<PierreContext>
   {
-    PierreContext IDesignTimeDbContextFactory<RecipeBoxContext>.CreateDbContext(string[] args)
+    PierreContext IDesignTimeDbContextFactory<PierreContext>.CreateDbContext(string[] args)
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()
           .SetBasePath(Directory.GetCurrentDirectory())
