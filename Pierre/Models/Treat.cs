@@ -18,11 +18,11 @@ namespace Pierre.Models
 
     // public bool isDuplicateTreat(PierreContext _db, int TreatId)
     // {
-    //   var  =  _db.DoctorPatients.Where(doctor => doctor.PatientId == this.PatientId).ToList();
+    //   var  =  _db.TreatFlavor.Where(doctor => treat.flavorId == this.FlavorId).ToList();
     //   bool isDuplicate = false;
-    //   foreach (var doctor in doctors)
+    //   foreach (var treat in treats)
     //   {
-    //     if (doctorId == doctor.DoctorId)
+    //     if (treatId == .TreatId)
     //     {
     //       isDuplicate = true;
     //     }
