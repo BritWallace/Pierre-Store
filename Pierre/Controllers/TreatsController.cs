@@ -39,6 +39,15 @@ namespace Pierre.Controllers
       
       return RedirectToAction("Index");
     }
+      public ActionResult Details(int id)
+    {
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
+      Treat foundTreat = _db.Treats
+        .Include(treat => treat.JoinTreatFlavor)
+        .ThenInclude(joinFlavor => joinFlavor.Flavor)
+        .FirstOrDefault(model => model.TreatId == id);
+      return View(foundTreat);
+    }
 
   }
 }
