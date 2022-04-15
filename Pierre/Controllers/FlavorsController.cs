@@ -87,5 +87,14 @@ namespace Pierre.Controllers
       }
       return RedirectToAction("Details", new { id = flavor.FlavorId});
     }
+      [HttpPost]
+    public ActionResult DeleteTreat(int joinId)
+    {
+      var joinEntry = _db.TreatFlavors.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
+      int savedFlavor = joinEntry.FlavorId;
+      _db.TreatFlavors.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new {id = savedFlavor});
+    }
   }
 }

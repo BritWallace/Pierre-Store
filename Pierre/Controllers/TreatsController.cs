@@ -77,7 +77,7 @@ namespace Pierre.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteTreat(int joinId)
+    public ActionResult DeleteFlavor(int joinId)
     {
       var joinEntry = _db.TreatFlavors.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
       int savedTreat = joinEntry.TreatId;
