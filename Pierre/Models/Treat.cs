@@ -16,18 +16,18 @@ namespace Pierre.Models
     
     public virtual ICollection<TreatFlavor> JoinTreatFlavor { get; set; }
 
-    // public bool isDuplicateTreat(PierreContext _db, int TreatId)
-    // {
-    //   var  =  _db.TreatFlavor.Where(doctor => treat.flavorId == this.FlavorId).ToList();
-    //   bool isDuplicate = false;
-    //   foreach (var treat in treats)
-    //   {
-    //     if (treatId == .TreatId)
-    //     {
-    //       isDuplicate = true;
-    //     }
-    //   }
-    //   return isDuplicate;
-    // }
+    public bool isDuplicateFlavor(PierreContext _db, int flavorId)
+    {
+      var flavors =  _db.TreatFlavors.Where(flavor => flavor.TreatId == this.TreatId).ToList();
+      bool isDuplicate = false;
+      foreach (var treat in flavors)
+      {
+        if (flavorId == TreatId)
+        {
+          isDuplicate = true;
+        }
+      }
+      return isDuplicate;
+    }
   }
 }

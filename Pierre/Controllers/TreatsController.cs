@@ -85,6 +85,17 @@ namespace Pierre.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = savedTreat});
     }
+    [HttpPost]
+    public ActionResult AddFlavor(Treat treat, int FlavorId)
+    {
+      bool isDuplicate = treat.isDuplicateFlavor(_db, FlavorId);
+      if (FlavorId !=0 && isDuplicate == false)
+      {
+        _db.TreatFlavors.Add(new TreatFlavor() {FlavorId = FlavorId, TreatId = treat.TreatId});
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = treat.TreatId});
+    }
 
 
 
