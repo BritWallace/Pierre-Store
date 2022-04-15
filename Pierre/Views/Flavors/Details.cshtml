@@ -39,7 +39,7 @@ else
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                @using (Html.BeginForm("DeleteDoctor", "Patients"))
+                @using (Html.BeginForm("DeleteTreat", "Flavors"))
                 {
                   @Html.Hidden("joinId", @join.TreatFlavorId)
                   <input type="submit" value="Delete"  class="btn btn-danger"/>

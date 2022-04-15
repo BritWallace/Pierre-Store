@@ -62,5 +62,19 @@ namespace Pierre.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    public ActionResult Delete(int id)
+    {
+      Flavor foundFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      return View(foundFlavor);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Flavor foundFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      _db.Flavors.Remove(foundFlavor);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
