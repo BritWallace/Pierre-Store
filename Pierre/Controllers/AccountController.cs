@@ -1,4 +1,4 @@
-// using Microsoft.AspNetCore.Mvc;
+
 // using Microsoft.AspNetCore.Identity;
 // using ProjectName.Models;
 // using System.Threading.Tasks;
@@ -7,7 +7,7 @@
 // {
 //     public class AccountController : Controller
 //     {
-//         private readonly ProjectNameContext _db;
+//         private readonly ProjectNameContext // using Microsoft.AspNetCore.Mvc;_db;
 //         private readonly UserManager<ApplicationUser> _userManager;
 //         private readonly SignInManager<ApplicationUser> _signInManager;
 
