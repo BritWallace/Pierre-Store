@@ -48,6 +48,21 @@ namespace Pierre.Controllers
         .FirstOrDefault(model => model.TreatId == id);
       return View(foundTreat);
     }
+    public ActionResult Edit(int id)
+    {
+      Treat foundTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      return View(foundTreat);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Treat treat)
+    {
+      _db.Entry(treat).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+
 
   }
 }

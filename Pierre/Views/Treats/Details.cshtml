@@ -1,0 +1,75 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Pierre.Models.Treat
+
+<h2>Treat Details</h2>
+<hr>
+<h3><strong>Name: </strong>@Html.DisplayFor(model => model.Name)</h3>
+<hr>
+<div class="row">
+  <div class="col">
+    @if (Model.JoinTreatFlavor.Count == 0)
+    {
+      <p>This treat hasn't been assigned any flavors.</p>
+    }
+    else
+    {
+      <h4><strong>Flavors:</strong> (@Model.JoinTreatFlavor.Count)</h4>
+      <ul>
+        @foreach (var join in Model.JoinTreatFlavor)
+        {
+          @using (Html.BeginForm("DeleteFlavor", "Treats"))
+          {
+            <p>
+              <!-- Modal Button Trigger -->
+              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#Patient_@(join.TreatFlavorId)">
+                Delete
+              </button>
+              - @Html.ActionLink($"{join.Flavor.Name}", "Details", "Flavors", new {id = join.Flavor.FlavorId})
+            </p>
+
+            <!-- Modal -->
+            <div class="modal fade" id="Patient_@(join.TreatFlavorId)" tabindex="-1" aria-labelledby="FlavorLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="FlavorLabel_@(join.TreatFlavorId)">Delete @join.Flavor.Name?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Clicking delete will remove this flavor from the treat. This action is final and you will need to re-add the patient manually if you wish to have them associated again.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    @using (Html.BeginForm("DeleteFlavor", "Treats"))
+                    {
+                      @Html.Hidden("joinId", @join.TreatFlavorId)
+                      <input type="submit" value="Delete"  class="btn btn-danger"/>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        }
+      </ul>
+    }
+
+
+    @using (Html.BeginForm("AddFlavor","Treats"))
+    {
+      @Html.HiddenFor(model => model.TreatId)
+
+      @Html.Label("Add Flavor")
+      @Html.DropDownList("FlavorId", "Select Flavor")
+
+      <input type="submit" value="add" />
+    }
+
+<p>@Html.ActionLink("Edit Doctor", "Edit", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Delete Doctor", "Delete", new { id = Model.TreatId})</p>
+
+
+
