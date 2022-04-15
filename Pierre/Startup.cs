@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Identity;
 using Pierre.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pierre
 {
@@ -29,14 +29,20 @@ namespace Pierre
       services.AddEntityFrameworkMySql()
         .AddDbContext<PierreContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
+        
+      services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<PierreContext>()
+                .AddDefaultTokenProviders();
     }
 
     public void Configure(IApplicationBuilder app)
     {
       app.UseDeveloperExceptionPage();
-      app.UseAuthentication();
-      
+
+      app.UseAuthentication(); 
+
       app.UseRouting();
+
       app.UseAuthorization();
 
       app.UseEndpoints(routes =>
@@ -45,7 +51,7 @@ namespace Pierre
       });
 
       app.UseStaticFiles();
-
+      
       app.Run(async (context) =>
       {
         await context.Response.WriteAsync("Hello World!");
