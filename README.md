@@ -2,7 +2,7 @@
 
 #### By _**Brit Wallace**_
 
-#### _An application for ._
+#### _An application for Pierre's bakery._
 
 ## Technologies Used
 
