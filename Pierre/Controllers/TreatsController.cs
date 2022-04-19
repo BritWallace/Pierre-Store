@@ -5,9 +5,16 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
+
+
 
 namespace Pierre.Controllers
 {
+  [Authorize]
   public class TreatsController: Controller
   {
     private readonly PierreContext _db;
@@ -16,6 +23,7 @@ namespace Pierre.Controllers
     {
       _db = db;
     }
+    [AllowAnonymous]
 
     public ActionResult Index()
     {
@@ -39,6 +47,7 @@ namespace Pierre.Controllers
       
       return RedirectToAction("Index");
     }
+    [AllowAnonymous]
       public ActionResult Details(int id)
     {
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
